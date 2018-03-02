@@ -24,14 +24,14 @@
         <CONFIGURATION isDebug="0" name="Release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../../Develop/Juce/modules"/>
-        <MODULEPATH id="juce_events" path="../../../Develop/Juce/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../Develop/Juce/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../Develop/Juce/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../Develop/Juce/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../Develop/Juce/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../../Develop/Juce/modules"/>
-        <MODULEPATH id="juce_osc" path="../../../Develop/Juce/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../Develop/Juce/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../Develop/Juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../Develop/Juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../Develop/Juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../Develop/Juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../Develop/Juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../Develop/Juce/modules"/>
+        <MODULEPATH id="juce_osc" path="../../../../Develop/Juce/modules"/>
       </MODULEPATHS>
     </VS2017>
   </EXPORTFORMATS>
