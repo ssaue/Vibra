@@ -18,7 +18,8 @@ MainComponent::MainComponent() :
 	sendField(new Label),
 	ngimu1(new NgimuComponent(this, String("1"))),
 	ngimu2(new NgimuComponent(this, String("2"))),
-	ngimu3(new NgimuComponent(this, String("3")))
+	ngimu3(new NgimuComponent(this, String("3"))),
+	sendPortNumber(12000)
 {
 	setSize(700, 400);
 
@@ -86,6 +87,9 @@ void MainComponent::broadcastMessage(const OSCMessage& message) {
 }
 
 void MainComponent::connectListener(const String& address) {
+	if (addresses.isEmpty()) {
+		sender.connect(address, sendPortNumber);
+	}
 	addresses.addIfNotAlreadyThere(address);
 }
 

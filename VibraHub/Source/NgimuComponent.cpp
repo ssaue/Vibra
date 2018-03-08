@@ -14,7 +14,7 @@
 
 NgimuComponent::NgimuComponent(OscBroadcaster *sender, const String& id) :
 	sender(sender),
-	prefix("/ngimu/" + id + "/raw"),
+	prefix("/ngimu/" + id),
 	battery(-1.0f),
 	batteryStatus(420, 18, 100, 25)
 {
