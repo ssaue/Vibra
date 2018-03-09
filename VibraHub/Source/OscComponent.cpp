@@ -90,7 +90,6 @@ void OscComponent::connectButtonClicked()
 		disconnect();
 
 	repaint();
-
 }
 
 //==============================================================================
@@ -98,7 +97,9 @@ void OscComponent::oscMessageReceived(const OSCMessage& /*message*/)
 {
 	if (!messageReceived) {
 		messageReceived = true;
-		repaint(activityStatus);
+		MessageManager::callAsync([=]() {
+			repaint(activityStatus); 
+		});
 	}
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "OscComponent.h"
+#include <map>
 
 class NgimuComponent;
 
@@ -28,8 +29,7 @@ private:
     ScopedPointer<NgimuComponent> ngimu2;
     ScopedPointer<NgimuComponent> ngimu3;
 
-	Array<String> addresses;
-	OSCSender sender;
+	std::map<String, ScopedPointer<OSCSender>> senders;
 
 	int sendPortNumber;
 

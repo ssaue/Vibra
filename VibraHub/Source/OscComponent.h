@@ -19,7 +19,7 @@ public:
 
 class OscComponent    : public Component,
 	private Button::Listener,
-	private OSCReceiver::Listener<OSCReceiver::MessageLoopCallback>
+	private OSCReceiver::Listener<OSCReceiver::RealtimeCallback>
 {
 public:
     OscComponent();

@@ -67,8 +67,10 @@ void NgimuComponent::oscMessageReceived(const OSCMessage& message)
 	String pattern = message.getAddressPattern().toString();
 	if (pattern.startsWith("/battery")) {
 		battery = message.isEmpty() ? -1.0f : message[0].getFloat32();
-		repaint(batteryStatus);
-	} 
+		MessageManager::callAsync([=]() {
+			repaint(batteryStatus);
+			});
+	}
 	else {
 		OSCAddressPattern address = prefix + pattern;
 		sendMessage.setAddressPattern(address);

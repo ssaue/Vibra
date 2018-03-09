@@ -81,20 +81,20 @@ void MainComponent::oscMessageReceived(const OSCMessage& message)
 
 
 void MainComponent::broadcastMessage(const OSCMessage& message) {
-	for (auto& element : addresses) {
-		sender.sendToIPAddress(element, sendPortNumber, message);
+	for (auto& element : senders) {
+		element.second->send(message);
 	}
 }
 
 void MainComponent::connectListener(const String& address) {
-	if (addresses.isEmpty()) {
-		sender.connect(address, sendPortNumber);
+	ScopedPointer<OSCSender> new_sender = new OSCSender();
+	if (new_sender->connect(address, sendPortNumber)) {
+		senders[address] = new_sender;
 	}
-	addresses.addIfNotAlreadyThere(address);
 }
 
 void MainComponent::disconnectListener(const String& address) {
-	addresses.removeFirstMatchingValue(address);
+	senders.erase(address);
 }
 
 
