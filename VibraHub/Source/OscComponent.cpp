@@ -97,7 +97,7 @@ void OscComponent::oscMessageReceived(const OSCMessage& /*message*/)
 {
 	if (!messageReceived) {
 		messageReceived = true;
-		MessageManager::callAsync([=]() {
+		MessageManager::callAsync([&]() {
 			repaint(activityStatus); 
 		});
 	}
