@@ -226,6 +226,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\MyoComponent.cpp">
+      <Filter>VibraHub\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\OscComponent.cpp">
       <Filter>VibraHub\Source</Filter>
     </ClCompile>
@@ -1542,6 +1545,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\MyoComponent.h">
+      <Filter>VibraHub\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\OscComponent.h">
       <Filter>VibraHub\Source</Filter>
     </ClInclude>

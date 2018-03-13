@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C2E10AEE-7CCB-316B-7FF3-546A618AA146}</ProjectGuid>
+    <ProjectGuid>{2F01022E-C897-7414-12C4-04741C446EBE}</ProjectGuid>
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -148,6 +148,7 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\MyoComponent.cpp"/>
     <ClCompile Include="..\..\Source\OscComponent.cpp"/>
     <ClCompile Include="..\..\Source\NgimuComponent.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
@@ -1356,6 +1357,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_osc.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\MyoComponent.h"/>
     <ClInclude Include="..\..\Source\OscComponent.h"/>
     <ClInclude Include="..\..\Source\NgimuComponent.h"/>
     <ClInclude Include="..\..\Source\OSCLogListBox.h"/>

@@ -12,26 +12,31 @@
 #include "OscComponent.h"
 
 //==============================================================================
-OscComponent::OscComponent() :
+OscComponent::OscComponent(const String& type) :
+	typeLabel(new Label),
 	portNumberLabel(new Label),
 	portNumberField(new Label),
 	connectButton(new TextButton("Connect")),
 	oscReceiver(new OSCReceiver),
 	currentPortNumber(-1),
 	messageReceived(false),
-	connectionStatus(340, 18, 25, 25),
-	activityStatus(380, 18, 25, 25)
+	connectionStatus(420, 18, 25, 25),
+	activityStatus(460, 18, 25, 25)
 {
+	typeLabel->setText(type + ":", dontSendNotification);
+	typeLabel->setBounds(10, 18, 60, 25);
+	addAndMakeVisible(typeLabel);
+
 	portNumberLabel->setText("UDP Port Number: ", dontSendNotification);
-	portNumberLabel->setBounds(10, 18, 130, 25);
+	portNumberLabel->setBounds(80, 18, 130, 25);
 	addAndMakeVisible(portNumberLabel);
 
 	portNumberField->setText("9001", dontSendNotification);
 	portNumberField->setEditable(true, true, true);
-	portNumberField->setBounds(140, 18, 50, 25);
+	portNumberField->setBounds(220, 18, 50, 25);
 	addAndMakeVisible(portNumberField);
 
-	connectButton->setBounds(210, 18, 100, 25);
+	connectButton->setBounds(280, 18, 100, 25);
 	addAndMakeVisible(connectButton);
 	connectButton->addListener(this);
 

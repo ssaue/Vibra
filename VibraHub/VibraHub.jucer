@@ -3,6 +3,9 @@
 <JUCERPROJECT name="VibraHub" projectType="guiapp" jucerVersion="5.2.1">
   <MAINGROUP id="AnCwLD" name="VibraHub">
     <GROUP id="{EDC7237C-7929-7C6A-490C-0605A9BF6C91}" name="Source">
+      <FILE id="yg3FX3" name="MyoComponent.cpp" compile="1" resource="0"
+            file="Source/MyoComponent.cpp"/>
+      <FILE id="EzuCaK" name="MyoComponent.h" compile="0" resource="0" file="Source/MyoComponent.h"/>
       <FILE id="S3ks2G" name="OscComponent.cpp" compile="1" resource="0"
             file="Source/OscComponent.cpp"/>
       <FILE id="y3x7Ng" name="OscComponent.h" compile="0" resource="0" file="Source/OscComponent.h"/>

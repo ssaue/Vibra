@@ -8,29 +8,23 @@
 
 #include "MainComponent.h"
 #include "NgimuComponent.h"
+#include "MyoComponent.h"
 
 static const OSCAddress connectPattern = "/vibra/connect";
 static const OSCAddress disconnectPattern = "/vibra/disconnect";
 
 //==============================================================================
 MainComponent::MainComponent() : 
-	sendLabel(new Label),
-	sendField(new Label),
+	OscComponent("Main"),
 	ngimu1(new NgimuComponent(this, String("1"))),
 	ngimu2(new NgimuComponent(this, String("2"))),
 	ngimu3(new NgimuComponent(this, String("3"))),
-	sendPortNumber(12000)
+	myo1(new MyoComponent(this)),
+	myo2(new MyoComponent(this)),
+	myo3(new MyoComponent(this)),
+	myo4(new MyoComponent(this))
 {
-	setSize(700, 400);
-
-	sendLabel->setText("UDP Send Port: ", dontSendNotification);
-	sendLabel->setBounds(420, 18, 130, 25);
-	addAndMakeVisible(sendLabel);
-
-	sendField->setText("12000", dontSendNotification);
-	sendField->setEditable(true, true, true);
-	sendField->setBounds(550, 18, 50, 25);
-	addAndMakeVisible(sendField);
+	setSize(700, 560);
 
 	ngimu1->setBounds(0, 70, 700, 130);
 	addAndMakeVisible(ngimu1);
@@ -40,6 +34,18 @@ MainComponent::MainComponent() :
 
 	ngimu3->setBounds(0, 210, 700, 270);
 	addAndMakeVisible(ngimu3);
+
+	myo1->setBounds(0, 280, 700, 340);
+	addAndMakeVisible(myo1);
+
+	myo2->setBounds(0, 350, 700, 410);
+	addAndMakeVisible(myo2);
+
+	myo3->setBounds(0, 420, 700, 480);
+	addAndMakeVisible(myo3);
+
+	myo4->setBounds(0, 490, 700, 550);
+	addAndMakeVisible(myo4);
 }
 
 MainComponent::~MainComponent()
@@ -65,8 +71,8 @@ void MainComponent::oscMessageReceived(const OSCMessage& message)
 	const OSCAddressPattern& address = message.getAddressPattern();
 
 	if (address.matches(connectPattern)) {
-		if (!message.isEmpty()) {
-			connectListener(message[0].getString());
+		if (message.size() >= 2 && message[0].isString () && message[1].isInt32()) {
+			connectListener(message[0].getString(), message[1].getInt32());
 		}
 	}
 	else if (address.matches(disconnectPattern)) {
@@ -86,9 +92,9 @@ void MainComponent::broadcastMessage(const OSCMessage& message) {
 	}
 }
 
-void MainComponent::connectListener(const String& address) {
+void MainComponent::connectListener(const String& address, const int port) {
 	ScopedPointer<OSCSender> new_sender = new OSCSender();
-	if (new_sender->connect(address, sendPortNumber)) {
+	if (new_sender->connect(address, port)) {
 		senders[address] = new_sender;
 	}
 }

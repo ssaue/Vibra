@@ -12,11 +12,12 @@
 
 //==============================================================================
 
-NgimuComponent::NgimuComponent(OscBroadcaster *sender, const String& id) :
+NgimuComponent::NgimuComponent(OscBroadcaster *sender, const String& id) : 
+	OscComponent("Ngimu"),
 	sender(sender),
 	prefix("/ngimu/" + id),
 	battery(-1.0f),
-	batteryStatus(420, 18, 100, 25)
+	batteryStatus(500, 18, 100, 25)
 {
 }
 

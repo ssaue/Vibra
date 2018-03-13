@@ -4,6 +4,7 @@
 #include <map>
 
 class NgimuComponent;
+class MyoComponent;
 
 class MainComponent   : public OscComponent, public OscBroadcaster
 {
@@ -19,19 +20,19 @@ private:
 	void oscMessageReceived(const OSCMessage& message) override;
 	void broadcastMessage(const OSCMessage& message) override;
 
-	void connectListener(const String& address);
+	void connectListener(const String& address, const int port);
 	void disconnectListener(const String& address);
-
-	ScopedPointer<Label> sendLabel;
-	ScopedPointer<Label> sendField;
 
 	ScopedPointer<NgimuComponent> ngimu1;
     ScopedPointer<NgimuComponent> ngimu2;
     ScopedPointer<NgimuComponent> ngimu3;
 
-	std::map<String, ScopedPointer<OSCSender>> senders;
+	ScopedPointer<MyoComponent> myo1;
+	ScopedPointer<MyoComponent> myo2;
+	ScopedPointer<MyoComponent> myo3;
+	ScopedPointer<MyoComponent> myo4;
 
-	int sendPortNumber;
+	std::map<String, ScopedPointer<OSCSender>> senders;
 
 	//==============================================================================
 

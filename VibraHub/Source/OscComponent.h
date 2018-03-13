@@ -22,7 +22,7 @@ class OscComponent    : public Component,
 	private OSCReceiver::Listener<OSCReceiver::RealtimeCallback>
 {
 public:
-    OscComponent();
+    OscComponent(const String& type);
     ~OscComponent();
 
     void paint (Graphics&) override;
@@ -33,6 +33,7 @@ protected:
 	bool isConnected();
 
 private:
+	ScopedPointer<Label> typeLabel;
 	ScopedPointer<Label> portNumberLabel;
 	ScopedPointer<Label> portNumberField;
 	ScopedPointer<TextButton> connectButton;
