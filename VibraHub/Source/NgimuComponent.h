@@ -16,7 +16,7 @@ class NgimuComponent : public OscComponent
 {
 public:
 
-	NgimuComponent(OscBroadcaster *sender, const String& id);
+	NgimuComponent(OscBroadcaster *sender);
 	~NgimuComponent();
 
 	void paint(Graphics&) override;
@@ -25,8 +25,7 @@ private:
 	void oscMessageReceived(const OSCMessage& message) override;
 
 	OscBroadcaster *sender;
-	String prefix;
-
+	
 	float battery;
 	Rectangle<int> batteryStatus;
 

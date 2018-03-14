@@ -16,9 +16,9 @@ static const OSCAddress disconnectPattern = "/vibra/disconnect";
 //==============================================================================
 MainComponent::MainComponent() : 
 	OscComponent("Main"),
-	ngimu1(new NgimuComponent(this, String("1"))),
-	ngimu2(new NgimuComponent(this, String("2"))),
-	ngimu3(new NgimuComponent(this, String("3"))),
+	ngimu1(new NgimuComponent(this)),
+	ngimu2(new NgimuComponent(this)),
+	ngimu3(new NgimuComponent(this)),
 	myo1(new MyoComponent(this)),
 	myo2(new MyoComponent(this)),
 	myo3(new MyoComponent(this)),
@@ -27,24 +27,31 @@ MainComponent::MainComponent() :
 	setSize(700, 560);
 
 	ngimu1->setBounds(0, 70, 700, 130);
+	ngimu1->setID(1);
 	addAndMakeVisible(ngimu1);
 
 	ngimu2->setBounds(0, 140, 700, 200);
+	ngimu2->setID(2);
 	addAndMakeVisible(ngimu2);
 
 	ngimu3->setBounds(0, 210, 700, 270);
+	ngimu3->setID(3);
 	addAndMakeVisible(ngimu3);
 
 	myo1->setBounds(0, 280, 700, 340);
+	myo1->setID(1);
 	addAndMakeVisible(myo1);
 
 	myo2->setBounds(0, 350, 700, 410);
+	myo2->setID(2);
 	addAndMakeVisible(myo2);
 
 	myo3->setBounds(0, 420, 700, 480);
+	myo3->setID(3);
 	addAndMakeVisible(myo3);
 
 	myo4->setBounds(0, 490, 700, 550);
+	myo4->setID(4);
 	addAndMakeVisible(myo4);
 }
 

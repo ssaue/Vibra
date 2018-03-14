@@ -27,13 +27,17 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+	void setID(int id);
 
 protected:
 	void oscMessageReceived(const OSCMessage& message) override;
 	bool isConnected();
+	const String& getPrefix() { return prefix;}
+	void setFrameColour(const Colour& colour) { frame = colour; }
 
 private:
 	ScopedPointer<Label> typeLabel;
+	ScopedPointer<Label> idField;
 	ScopedPointer<Label> portNumberLabel;
 	ScopedPointer<Label> portNumberField;
 	ScopedPointer<TextButton> connectButton;
@@ -42,6 +46,8 @@ private:
 
 	int currentPortNumber;
 	bool messageReceived;
+	String prefix;
+	Colour frame;
 
 	Rectangle<int> connectionStatus;
 	Rectangle<int> activityStatus;

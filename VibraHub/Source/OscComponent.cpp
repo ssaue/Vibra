@@ -14,6 +14,7 @@
 //==============================================================================
 OscComponent::OscComponent(const String& type) :
 	typeLabel(new Label),
+	idField(new Label),
 	portNumberLabel(new Label),
 	portNumberField(new Label),
 	connectButton(new TextButton("Connect")),
@@ -21,22 +22,28 @@ OscComponent::OscComponent(const String& type) :
 	currentPortNumber(-1),
 	messageReceived(false),
 	connectionStatus(420, 18, 25, 25),
-	activityStatus(460, 18, 25, 25)
+	activityStatus(460, 18, 25, 25),
+	frame(Colours::grey)
 {
-	typeLabel->setText(type + ":", dontSendNotification);
+	typeLabel->setText(type, dontSendNotification);
 	typeLabel->setBounds(10, 18, 60, 25);
 	addAndMakeVisible(typeLabel);
 
+	idField->setText("1", dontSendNotification);
+	idField->setEditable(true, true, true);
+	idField->setBounds(70, 18, 20, 25);
+	addAndMakeVisible(idField);
+
 	portNumberLabel->setText("UDP Port Number: ", dontSendNotification);
-	portNumberLabel->setBounds(80, 18, 130, 25);
+	portNumberLabel->setBounds(100, 18, 130, 25);
 	addAndMakeVisible(portNumberLabel);
 
 	portNumberField->setText("9001", dontSendNotification);
 	portNumberField->setEditable(true, true, true);
-	portNumberField->setBounds(220, 18, 50, 25);
+	portNumberField->setBounds(240, 18, 50, 25);
 	addAndMakeVisible(portNumberField);
 
-	connectButton->setBounds(280, 18, 100, 25);
+	connectButton->setBounds(300, 18, 100, 25);
 	addAndMakeVisible(connectButton);
 	connectButton->addListener(this);
 
@@ -68,7 +75,7 @@ void OscComponent::paint (Graphics& g)
 	g.fillRoundedRectangle((float) activityStatus.getX(), (float) activityStatus.getY(), 
 		(float) activityStatus.getWidth(), (float) activityStatus.getHeight(), 5.0f);
 
-    g.setColour (Colours::grey);
+    g.setColour (frame);
     g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
 }
 
@@ -77,6 +84,11 @@ void OscComponent::resized()
     // This method is where you should set the bounds of any child
     // components that your component contains..
 
+}
+
+void OscComponent::setID(int id)
+{
+	idField->setText(String(id), dontSendNotification);
 }
 
 
@@ -130,6 +142,10 @@ void OscComponent::connect()
 		return;
 	}
 
+	String type = typeLabel->getText();
+	int id = idField->getText().getIntValue();
+	prefix = "/" + type + "/" + String(id);
+
 	if (oscReceiver->connect(portToConnect))
 	{
 		currentPortNumber = portToConnect;
@@ -155,6 +171,7 @@ void OscComponent::disconnect()
 		handleDisconnectError();
 	}
 }
+
 
 //==============================================================================
 void OscComponent::handleConnectError(int failedPort)

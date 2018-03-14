@@ -12,13 +12,13 @@
 
 //==============================================================================
 
-NgimuComponent::NgimuComponent(OscBroadcaster *sender, const String& id) : 
-	OscComponent("Ngimu"),
+NgimuComponent::NgimuComponent(OscBroadcaster *sender) : 
+	OscComponent("ngimu"),
 	sender(sender),
-	prefix("/ngimu/" + id),
 	battery(-1.0f),
 	batteryStatus(500, 18, 100, 25)
 {
+	setFrameColour(Colours::green);
 }
 
 NgimuComponent::~NgimuComponent()
@@ -73,7 +73,7 @@ void NgimuComponent::oscMessageReceived(const OSCMessage& message)
 			});
 	}
 	else {
-		OSCAddressPattern address = prefix + pattern;
+		OSCAddressPattern address = getPrefix() + pattern;
 		sendMessage.setAddressPattern(address);
 		sender->broadcastMessage(sendMessage);
 	}

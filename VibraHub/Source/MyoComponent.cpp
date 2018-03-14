@@ -11,9 +11,10 @@
 #include "MyoComponent.h"
 
 MyoComponent::MyoComponent(OscBroadcaster *sender) :
-	OscComponent("Myo"),
+	OscComponent("myo"),
 	sender(sender)
 {
+	setFrameColour(Colours::red);
 }
 
 MyoComponent::~MyoComponent()
@@ -28,7 +29,7 @@ void MyoComponent::oscMessageReceived(const OSCMessage& message)
 	OSCMessage sendMessage = message;
 	String pattern = message.getAddressPattern().toString();
 	if (pattern.startsWith("/myo")) {
-		OSCAddressPattern address = "/myo/" + pattern.substring(4);
+		OSCAddressPattern address = getPrefix() + pattern.substring(5);
 		sendMessage.setAddressPattern(address);
 		sender->broadcastMessage(sendMessage);
 	}
