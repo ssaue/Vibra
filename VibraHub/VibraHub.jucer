@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT name="VibraHub" projectType="guiapp" jucerVersion="5.2.1">
+<JUCERPROJECT name="VibraHub" projectType="guiapp" jucerVersion="5.3.2" id="Z1zEMy">
   <MAINGROUP id="AnCwLD" name="VibraHub">
     <GROUP id="{EDC7237C-7929-7C6A-490C-0605A9BF6C91}" name="Source">
       <FILE id="yg3FX3" name="MyoComponent.cpp" compile="1" resource="0"
@@ -49,4 +49,7 @@
     <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
   <JUCEOPTIONS/>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
 </JUCERPROJECT>

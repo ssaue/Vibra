@@ -26,6 +26,7 @@ private:
 	ScopedPointer<NgimuComponent> ngimu1;
     ScopedPointer<NgimuComponent> ngimu2;
     ScopedPointer<NgimuComponent> ngimu3;
+	ScopedPointer<NgimuComponent> ngimu4;
 
 	ScopedPointer<MyoComponent> myo1;
 	ScopedPointer<MyoComponent> myo2;

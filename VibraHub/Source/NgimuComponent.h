@@ -11,6 +11,7 @@
 #pragma once
 
 #include "OscComponent.h"
+#include <vector>
 
 class NgimuComponent : public OscComponent
 {
@@ -27,6 +28,8 @@ private:
 	OscBroadcaster *sender;
 	
 	float battery;
+	enum{ROLL,PITCH,YAW};
+	std::vector<float> old_euler;
 	Rectangle<int> batteryStatus;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(NgimuComponent)

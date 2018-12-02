@@ -16,6 +16,7 @@ NgimuComponent::NgimuComponent(OscBroadcaster *sender) :
 	OscComponent("ngimu"),
 	sender(sender),
 	battery(-1.0f),
+	old_euler{ 0.0f, 0.0f, 0.0f },
 	batteryStatus(500, 18, 100, 25)
 {
 	setFrameColour(Colours::green);
@@ -64,7 +65,6 @@ void NgimuComponent::oscMessageReceived(const OSCMessage& message)
 {
 	OscComponent::oscMessageReceived(message);
 	
-	OSCMessage sendMessage = message;
 	String pattern = message.getAddressPattern().toString();
 	if (pattern.startsWith("/battery")) {
 		battery = message.isEmpty() ? -1.0f : message[0].getFloat32();
@@ -72,7 +72,30 @@ void NgimuComponent::oscMessageReceived(const OSCMessage& message)
 			repaint(batteryStatus);
 			});
 	}
+	else if (pattern.startsWith("/euler")) {
+		float roll = message[ROLL].getFloat32();
+		float pitch = message[PITCH].getFloat32();
+		float yaw = message[YAW].getFloat32();
+		if (abs(pitch) >= 85.0f) {	// Roll and pitch are unstable - use old values
+			roll = old_euler[ROLL];
+			old_euler[PITCH] = pitch;
+			yaw = old_euler[YAW];
+		}
+		else {
+			if (abs(roll - old_euler[ROLL]) > 320) {	// Must unwrap the roll value
+				roll += (roll > old_euler[ROLL] ? -360 : 360);
+			}
+			if (abs(yaw - old_euler[YAW]) > 320) {	// Must unwrap the yaw value
+				yaw += (yaw > old_euler[YAW] ? -360 : 360);
+			}
+			old_euler = { roll, pitch, yaw };
+		}
+		OSCAddressPattern address = getPrefix() + pattern;
+		OSCMessage sendMessage(address, roll, pitch, yaw);
+		sender->broadcastMessage(sendMessage);
+	}
 	else {
+		OSCMessage sendMessage = message;
 		OSCAddressPattern address = getPrefix() + pattern;
 		sendMessage.setAddressPattern(address);
 		sender->broadcastMessage(sendMessage);

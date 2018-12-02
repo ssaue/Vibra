@@ -19,12 +19,13 @@ MainComponent::MainComponent() :
 	ngimu1(new NgimuComponent(this)),
 	ngimu2(new NgimuComponent(this)),
 	ngimu3(new NgimuComponent(this)),
+	ngimu4(new NgimuComponent(this)),
 	myo1(new MyoComponent(this)),
 	myo2(new MyoComponent(this)),
 	myo3(new MyoComponent(this)),
 	myo4(new MyoComponent(this))
 {
-	setSize(700, 560);
+	setSize(700, 630);
 
 	ngimu1->setBounds(0, 70, 700, 130);
 	ngimu1->setID(1);
@@ -38,19 +39,23 @@ MainComponent::MainComponent() :
 	ngimu3->setID(3);
 	addAndMakeVisible(ngimu3);
 
-	myo1->setBounds(0, 280, 700, 340);
+	ngimu4->setBounds(0, 280, 700, 340);
+	ngimu4->setID(4);
+	addAndMakeVisible(ngimu4);
+
+	myo1->setBounds(0, 350, 700, 410);
 	myo1->setID(1);
 	addAndMakeVisible(myo1);
 
-	myo2->setBounds(0, 350, 700, 410);
+	myo2->setBounds(0, 420, 700, 480);
 	myo2->setID(2);
 	addAndMakeVisible(myo2);
 
-	myo3->setBounds(0, 420, 700, 480);
+	myo3->setBounds(0, 490, 700, 550);
 	myo3->setID(3);
 	addAndMakeVisible(myo3);
 
-	myo4->setBounds(0, 490, 700, 550);
+	myo4->setBounds(0, 560, 700, 620);
 	myo4->setID(4);
 	addAndMakeVisible(myo4);
 }

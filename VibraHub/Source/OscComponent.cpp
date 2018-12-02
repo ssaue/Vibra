@@ -58,6 +58,7 @@ OscComponent::OscComponent(const String& type) :
 
 OscComponent::~OscComponent()
 {
+	disconnect();
 }
 
 void OscComponent::paint (Graphics& g)
